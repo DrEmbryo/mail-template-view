@@ -1,0 +1,28 @@
+{
+  "name": "mail-template-view",
+  "version": "0.0.1",
+  "description": "Interactive email template viewer",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrEmbryo/mail-template-view.git"
+  },
+  "keywords": [
+    "Interactive",
+    "Email",
+    "Templates",
+    "Node.js"
+  ],
+  "author": "DrEmbryo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DrEmbryo/mail-template-view/issues"
+  },
+  "homepage": "https://github.com/DrEmbryo/mail-template-view#readme",
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
