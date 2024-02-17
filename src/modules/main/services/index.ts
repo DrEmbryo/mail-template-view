@@ -1,4 +1,5 @@
 import * as fs from "node:fs/promises";
+import { Buffer } from "node:buffer";
 import path from "path";
 
 export const basePath = path.join(process.cwd(), "src", "templates");
@@ -24,6 +25,6 @@ export const getTemplateContext = async (template, locale) => {
 export const updateTemplateContext = async (template, locale, data) => {
   await fs.writeFile(
     path.join(basePath, "translations", locale, template),
-    data
+    new Uint8Array(Buffer.from(data))
   );
 };
