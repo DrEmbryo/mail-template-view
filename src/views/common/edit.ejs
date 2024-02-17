@@ -1,0 +1,26 @@
+<form
+  class="mt-4"
+  id="schema"
+  hx-trigger="change delay:500ms"
+  hx-post="/schema"
+  hx-vals='{"locale": "{%= schema.meta.locale %}", "template": "{%= schema.meta.template %}" }'
+>
+  {% for(let field in schema.body) { %}
+  <div class="mx-2 mt-4">
+    <label
+      for="{%= field %}"
+      class="block mb-2 text-sm font-medium text-stone-900 dark:text-white"
+      >{%= schema.body[field].name %}</label
+    >
+    <input
+      type="text"
+      id="{%= field %}"
+      name="{%= field %}"
+      class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter section text here ..."
+      value="{%= schema.body[field].value %}"
+      required
+    />
+  </div>
+  {% }; %}
+</form>
