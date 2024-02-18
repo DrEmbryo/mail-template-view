@@ -134,5 +134,34 @@
     [% } %]
   </form>
 
+  <!-- Rich text -->
+  <form class="mt-2">
+    [% if(schema.body[field]?.attributes?.richText) { %]
+    <div 
+      class="mx-2 text-white"
+      hx-post="/template"
+      hx-target="#preview"
+      hx-include="#header-controls"
+      >
+      <input
+        id="[%= `${field}.attributes.richText.name` %]"
+        value="[%= schema.body[field].state?.richText %]"
+        type="hidden"
+        name="[%= `${field}.state.richText` %]"
+      />
+      <trix-editor input="[%= `${field}.attributes.richText.name` %]"></trix-editor>
+      <button 
+        hx-post="/schema"
+        hx-include="#header-controls"
+        hx-target="#schema"
+        hx-trigger="click"
+        type="button" 
+        class="mt-2 text-white bg-stone-800 hover:bg-stone-900 focus:outline-none focus:ring-4 focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-stone-800 dark:hover:bg-stone-700 dark:focus:ring-stone-700 dark:border-stone-700">
+        Save
+      </button>
+    </div>
+    [% } %]
+  </form>
+
   [% }; %]
 </div>
