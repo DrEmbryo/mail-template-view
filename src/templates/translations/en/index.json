@@ -5,18 +5,43 @@
         "title": "russian translation for index template"
     },
     "body": {
-        "hello": {
-            "name": "Greetings",
-            "value": "I don't have russian layout on my Linux machine so here's a test sentence to test templates"
-        },
-        "testButton": {
-            "name": "Greetings",
-            "value": "test button",
+        "logo": {
             "state": {
-                "toggle": "true"
+                "select": "/assets/logo-test.png"
             },
             "attributes": {
-                "toggle": true
+                "select": {
+                    "name": "Logo url",
+                    "options": [
+                        "/assets/logo-small.png",
+                        "/assets/logo-test.png"
+                    ]
+                }
+            }
+        },
+        "hello": {
+            "state": {
+                "text": "test 123 123 123"
+            },
+            "attributes": {
+                "text": {
+                    "name": "Greetings"
+                }
+            }
+        },
+        "testButton": {
+            "state": {
+                "text": "test button",
+                "checkbox": "true"
+            },
+            "attributes": {
+                "text": {
+                    "name": "Test button"
+                },
+                "checkbox": {
+                    "name": "Test button visibility",
+                    "active": true
+                }
             }
         }
     }

@@ -7,28 +7,33 @@
   hx-include="#header-controls"
 >
   [% for(let field in schema.body) { %]
+  <!-- attribute: input -->
   <div class="mx-2 mt-4">
+    [% if(schema.body[field]?.attributes?.text) { %]
     <label
-      for="[%= field %]"
+      for="[%= `${field}?.attributes?.text?.name` %]"
       class="block mb-2 text-sm font-medium text-stone-900 dark:text-white"
-      >[%= schema.body[field].name %]</label
+      >[%= schema.body[field].attributes.text.name %]</label
     >
     <input
       type="text"
-      id="[%= field %]"
-      name="[%= `${field}.value` %]"
+      id="[%= `${field}.attributes.text.name` %]"
+      name="[%= `${field}.state.text` %]"
       class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       placeholder="Enter section text here ..."
-      value="[%= schema.body[field].value %]"
+      value="[%= schema.body[field]?.state?.text %]"
       hx-post="/schema"
       hx-include="#header-controls"
       hx-trigger="change"
       hx-target="#schema"
       required
     />
+    [% } %]
+  </div>
 
-    [% if(schema.body[field]?.attributes?.toggle) { %]
-
+  <!-- attribute: checkbox -->
+  <div class="mx-2 mt-4">
+    [% if(schema.body[field]?.attributes?.checkbox?.active) { %]
     <div
       class="flex items-center mt-2"
       hx-post="/schema"
@@ -38,25 +43,96 @@
     >
       <!-- prettier-ignore  -->
       <input
-        id="[%= `${field}.state.toggle` %]"
-        type="checkbox"
-        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-        [% if (schema.body[field]?.state?.toggle == 'true') { %] checked [% } %]
-      />
+          id="[%= `${field}?.attributes?.checkbox?.name` %]"
+          type="checkbox"
+          class="w-4 h-4 text-blue-600 bg-stone-100 border-stone-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-stone-800 focus:ring-2 dark:bg-stone-700 dark:border-stone-600"
+          [% if (schema.body[field]?.state?.checkbox == 'true') { %] checked [% } %]
+        />
       <input
-        for="[%= `${field}.state.toggle` %]"
         type="hidden"
-        name="[%= `${field}.state.toggle` %]"
-        value="[%= schema.body[field]?.state?.toggle != 'true' %]"
+        for="[%= `${field}.attributes.checkbox.name` %]"
+        name="[%= `${field}.state.checkbox` %]"
+        value="[%= schema.body[field]?.state?.checkbox != 'true' %]"
       />
       <!-- prettier-ignore-end -->
       <label
-        for="[%= `${field}.state.toggle` %]"
-        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        >Visibility of element
+        for="[%= `${field}.attributes?.checkbox?.name` %]"
+        class="ms-2 text-sm font-medium text-stone-900 dark:text-stone-300"
+      >
+        [%= schema.body[field].attributes?.checkbox?.name %]
       </label>
     </div>
     [% } %]
   </div>
+
+  <!-- attribute: toggle -->
+  <div class="mx-2 mt-4">
+    [% if(schema.body[field]?.attributes?.toggle) { %]
+    <div
+      class="flex items-center mt-2"
+      hx-post="/schema"
+      hx-include="#header-controls"
+      hx-trigger="click"
+      hx-target="#schema"
+    >
+      <!-- prettier-ignore  -->
+      <label class="inline-flex items-center cursor-pointer">
+        <input
+          type="checkbox"
+          class="sr-only peer"
+          id="[%= `${field}.attributes?.toggle?.name` %]"
+          [% if (schema.body[field]?.state?.toggle == 'true') { %] checked [% } %]
+        />
+        <div
+        class="relative w-11 h-6 bg-stone-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-stone-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-stone-600 peer-checked:bg-blue-600"
+        ></div>
+        <span class="ms-3 text-sm font-medium text-stone-900 dark:text-stone-300">
+          [%= schema.body[field].attributes?.toggle?.name %]
+        </span>
+        <input
+        type="hidden"
+        for="[%= `${field}.attributes.toggle.name` %]"
+        name="[%= `${field}.state.toggle` %]"
+        value="[%= schema.body[field]?.state?.toggle != 'true' %]"
+      />
+      </label>
+      <!-- prettier-ignore-end -->
+    </div>
+    [% } %]
+  </div>
+
+  <!-- attribute: select -->
+  <div class="mx-2 mt-4">
+    [% if(schema.body[field]?.attributes?.select) { %]
+    <div
+      class="mt-2"
+      hx-post="/schema"
+      hx-include="#header-controls"
+      hx-trigger="change"
+      hx-target="#schema"
+    >
+      <label
+        for="[%= `${field}.attributes.select.name` %]"
+        class="block mb-2 text-sm font-medium text-stone-900 dark:text-white"
+      >
+        [%= schema.body[field].attributes?.select?.name %]
+      </label>
+      <select
+        id="[%= `${field}.attributes.select.name` %]"
+        name="[%= `${field}.state.select` %]"
+        class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        [% schema.body[field].attributes?.select?.options.forEach(function
+        (option) { %]
+        <option 
+        value="[%= option %]"
+        [% if (schema.body[field]?.state?.select == option) { %] selected [% } %]
+        >[%= option %]</option>
+        [% }); %]
+      </select>
+    </div>
+    [% } %]
+  </div>
+
   [% }; %]
 </form>
