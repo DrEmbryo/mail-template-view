@@ -1,14 +1,14 @@
-<form
+<div
   class="mt-4"
   id="schema"
   hx-post="/template"
-  hx-trigger="change delay:500ms"
+  hx-trigger="change"
   hx-target="#preview"
   hx-include="#header-controls"
 >
   [% for(let field in schema.body) { %]
   <!-- attribute: input -->
-  <div class="mx-2 mt-4">
+  <form class="mx-2 mt-4">
     [% if(schema.body[field]?.attributes?.text) { %]
     <label
       for="[%= `${field}?.attributes?.text?.name` %]"
@@ -29,10 +29,10 @@
       required
     />
     [% } %]
-  </div>
+  </form>
 
   <!-- attribute: checkbox -->
-  <div class="mx-2 mt-4">
+  <form class="mx-2 mt-4">
     [% if(schema.body[field]?.attributes?.checkbox?.active) { %]
     <div
       class="flex items-center mt-2"
@@ -63,10 +63,10 @@
       </label>
     </div>
     [% } %]
-  </div>
+  </form>
 
   <!-- attribute: toggle -->
-  <div class="mx-2 mt-4">
+  <form class="mx-2 mt-4">
     [% if(schema.body[field]?.attributes?.toggle) { %]
     <div
       class="flex items-center mt-2"
@@ -99,10 +99,10 @@
       <!-- prettier-ignore-end -->
     </div>
     [% } %]
-  </div>
+  </form>
 
   <!-- attribute: select -->
-  <div class="mx-2 mt-4">
+  <form class="mx-2 mt-4">
     [% if(schema.body[field]?.attributes?.select) { %]
     <div
       class="mt-2"
@@ -132,7 +132,7 @@
       </select>
     </div>
     [% } %]
-  </div>
+  </form>
 
   [% }; %]
-</form>
+</div>

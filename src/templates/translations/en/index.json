@@ -7,7 +7,7 @@
     "body": {
         "logo": {
             "state": {
-                "select": "/assets/logo-test.png"
+                "select": "/assets/logo-small.png"
             },
             "attributes": {
                 "select": {
@@ -21,7 +21,7 @@
         },
         "hello": {
             "state": {
-                "text": "test 123 123 123"
+                "text": "Hi welcome to this demo of dynamically generated email template preview! </br> Lets explore some features that was implemented so far.</br> <ul><li>#1 Dynamic content via select element (try to change logo url)</li><li>#2 Dynamic text (you are currenlt reading it!)</li><li>#3 Toggles and checkboxes (try to toggle test button)</li><li>#4 <span class=\"bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500\">Dynamic<span> styling for elements</li><li>#5 Dynamic content for different locales via JSON schemas</li></ul> </br> And that's about it for now. Thanks! !"
             },
             "attributes": {
                 "text": {
@@ -31,14 +31,14 @@
         },
         "testButton": {
             "state": {
-                "text": "test button",
-                "checkbox": "true"
+                "text": "this is test button ",
+                "toggle": "true"
             },
             "attributes": {
                 "text": {
                     "name": "Test button"
                 },
-                "checkbox": {
+                "toggle": {
                     "name": "Test button visibility",
                     "active": true
                 }

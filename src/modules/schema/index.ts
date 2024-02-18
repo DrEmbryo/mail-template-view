@@ -19,7 +19,7 @@ export const updateSchema = async function (req, res) {
     locale
   );
 
-  console.log(updatedFields);
+  console.log(req.body);
 
   if (Object.keys(updatedFields).length > 0) {
     for (let field in updatedFields) {
