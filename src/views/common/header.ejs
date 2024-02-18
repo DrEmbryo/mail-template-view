@@ -1,9 +1,6 @@
-<form
-  hx-post="/template"
-  hx-trigger="change, load, every 500ms"
-  hx-target="#preview"
->
+<form hx-post="/template" hx-trigger="change, load" hx-target="#preview">
   <div
+    id="header-controls"
     hx-post="/fields"
     hx-trigger="change, load"
     hx-target="#schema"
@@ -20,9 +17,9 @@
         id="template"
         class="g-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
-        {% templates.forEach(function (template) { %}
-        <option value="{%= template %}">{%= template.split('.')[0] %}</option>
-        {% }); %}
+        [% templates.forEach(function (template) { %]
+        <option value="[%= template %]">[%= template.split('.')[0] %]</option>
+        [% }); %]
       </select>
     </div>
     <div class="mr-2 w-2/5">
@@ -36,9 +33,9 @@
         id="locale"
         class="g-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
-        {% locales.forEach(function (locale) { %}
-        <option value="{%= locale %}">{%= locale %}</option>
-        {% }); %}
+        [% locales.forEach(function (locale) { %]
+        <option value="[%= locale %]">[%= locale %]</option>
+        [% }); %]
       </select>
     </div>
   </div>

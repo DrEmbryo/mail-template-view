@@ -7,8 +7,17 @@
     "body": {
         "hello": {
             "name": "Greetings",
-            "type": "string",
             "value": "I don't have russian layout on my Linux machine so here's a test sentence to test templates"
+        },
+        "testButton": {
+            "name": "Greetings",
+            "value": "test button",
+            "state": {
+                "toggle": false
+            },
+            "attributes": {
+                "toggle": false
+            }
         }
     }
 }

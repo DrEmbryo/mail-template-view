@@ -2,8 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import ejs from "ejs";
 
-ejs.openDelimiter = "{";
-ejs.closeDelimiter = "}";
+ejs.openDelimiter = "[";
+ejs.closeDelimiter = "]";
 
 import { mainRouter } from "./modules/main";
 

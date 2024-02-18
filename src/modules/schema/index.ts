@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { getTemplateContext, updateTemplateContext } from "../main/services";
 
 export const getSchema = async function (req, res) {
@@ -13,14 +14,16 @@ export const getSchema = async function (req, res) {
 export const updateSchema = async function (req, res) {
   const { template, locale, ...updatedFields } = req.body;
 
-  const schema = await getTemplateContext(
+  let schema = await getTemplateContext(
     template.replace(".mjml", ".json"),
     locale
   );
 
+  console.log(updatedFields);
+
   if (Object.keys(updatedFields).length > 0) {
     for (let field in updatedFields) {
-      schema.body[field].value = updatedFields[field];
+      _.set(schema, `body.${field}`, updatedFields[field]);
     }
 
     await updateTemplateContext(
@@ -28,12 +31,14 @@ export const updateSchema = async function (req, res) {
       locale,
       JSON.stringify(schema)
     );
-  }
 
-  const updatedSchema = await getTemplateContext(
-    template.replace(".mjml", ".json"),
-    locale
-  );
+    const updatedSchema = await getTemplateContext(
+      template.replace(".mjml", ".json"),
+      locale
+    );
 
-  res.render("./common/edit.ejs", { schema: updatedSchema });
+    console.log(updatedSchema.body);
+
+    return res.render("./common/edit.ejs", { schema: updatedSchema });
+  } else res.render("./common/edit.ejs", { schema });
 };

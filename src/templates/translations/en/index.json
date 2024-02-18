@@ -2,13 +2,22 @@
     "meta": {
         "locale": "en",
         "template": "index.mjml",
-        "title": "this is index template"
+        "title": "russian translation for index template"
     },
     "body": {
         "hello": {
             "name": "Greetings",
-            "type": "string",
-            "value": "Hello from templates"
+            "value": "I don't have russian layout on my Linux machine so here's a test sentence to test templates"
+        },
+        "testButton": {
+            "name": "Greetings",
+            "value": "test button",
+            "state": {
+                "toggle": "true"
+            },
+            "attributes": {
+                "toggle": true
+            }
         }
     }
 }

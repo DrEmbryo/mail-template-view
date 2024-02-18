@@ -1,26 +1,62 @@
 <form
   class="mt-4"
   id="schema"
+  hx-post="/template"
   hx-trigger="change delay:500ms"
-  hx-post="/schema"
-  hx-vals='{"locale": "{%= schema.meta.locale %}", "template": "{%= schema.meta.template %}" }'
+  hx-target="#preview"
+  hx-include="#header-controls"
 >
-  {% for(let field in schema.body) { %}
+  [% for(let field in schema.body) { %]
   <div class="mx-2 mt-4">
     <label
-      for="{%= field %}"
+      for="[%= field %]"
       class="block mb-2 text-sm font-medium text-stone-900 dark:text-white"
-      >{%= schema.body[field].name %}</label
+      >[%= schema.body[field].name %]</label
     >
     <input
       type="text"
-      id="{%= field %}"
-      name="{%= field %}"
+      id="[%= field %]"
+      name="[%= `${field}.value` %]"
       class="bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       placeholder="Enter section text here ..."
-      value="{%= schema.body[field].value %}"
+      value="[%= schema.body[field].value %]"
+      hx-post="/schema"
+      hx-include="#header-controls"
+      hx-trigger="change"
+      hx-target="#schema"
       required
     />
+
+    [% if(schema.body[field]?.attributes?.toggle) { %]
+
+    <div
+      class="flex items-center mt-2"
+      hx-post="/schema"
+      hx-include="#header-controls"
+      hx-trigger="click"
+      hx-target="#schema"
+    >
+      <!-- prettier-ignore  -->
+      <input
+        id="[%= `${field}.state.toggle` %]"
+        type="checkbox"
+        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        [% if (schema.body[field]?.state?.toggle == 'true') { %] checked [% } %]
+      />
+      <input
+        for="[%= `${field}.state.toggle` %]"
+        type="hidden"
+        name="[%= `${field}.state.toggle` %]"
+        value="[%= schema.body[field]?.state?.toggle != 'true' %]"
+      />
+      <!-- prettier-ignore-end -->
+      <label
+        for="[%= `${field}.state.toggle` %]"
+        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Visibility of element
+      </label>
+    </div>
+    [% } %]
   </div>
-  {% }; %}
+  [% }; %]
 </form>
