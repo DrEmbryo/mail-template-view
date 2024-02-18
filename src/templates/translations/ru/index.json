@@ -1,0 +1,48 @@
+{
+    "meta": {
+        "locale": "en",
+        "template": "index.mjml",
+        "title": "russian translation for index template"
+    },
+    "body": {
+        "logo": {
+            "state": {
+                "select": "/assets/logo-small.png"
+            },
+            "attributes": {
+                "select": {
+                    "name": "Logo url",
+                    "options": [
+                        "/assets/logo-small.png",
+                        "/assets/logo-test.png"
+                    ]
+                }
+            }
+        },
+        "hello": {
+            "state": {
+                "text": "Приветствую и добро пожаловать в демонстрационную версию предварительного просмотра динамически генерируемого шаблона электронной почты! </br> Давайте рассмотрим некоторые реализованные на данный момент функции.</br> <ul><li>#1 Динамический контент через элемент выбора (попробуйте изменить URL-адрес логотипа)</li><li>#2 Динамический текст ( вы сейчас не читаете это!)</li><li>#3 Переключатели и флажки (попробуйте переключить тестовую кнопку)</li><li>#4 <span class=\"bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500\">Динамический<span> стиль для элементов</li><li>#5 Динамический контент для разных локалей с помощью схем JSON</li></ul> На этом пока всё. Спасибо! !"
+            },
+            "attributes": {
+                "text": {
+                    "name": "Greetings"
+                }
+            }
+        },
+        "testButton": {
+            "state": {
+                "text": "this is test button ",
+                "toggle": "true"
+            },
+            "attributes": {
+                "text": {
+                    "name": "Test button"
+                },
+                "toggle": {
+                    "name": "Test button visibility",
+                    "active": true
+                }
+            }
+        }
+    }
+}

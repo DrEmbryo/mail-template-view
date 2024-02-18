@@ -1,0 +1,42 @@
+<form hx-post="/template" hx-trigger="change, load" hx-target="#preview">
+  <div
+    id="header-controls"
+    hx-post="/fields"
+    hx-trigger="change, load"
+    hx-target="#schema"
+    class="bg-stone-600 py-2 flex shadow-md"
+  >
+    <div class="mx-2 w-3/5">
+      <label
+        for="template"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Template name</label
+      >
+      <select
+        name="template"
+        id="template"
+        class="g-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        [% templates.forEach(function (template) { %]
+        <option value="[%= template %]">[%= template.split('.')[0] %]</option>
+        [% }); %]
+      </select>
+    </div>
+    <div class="mr-2 w-2/5">
+      <label
+        for="locale"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Locale</label
+      >
+      <select
+        name="locale"
+        id="locale"
+        class="g-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-stone-700 dark:border-stone-600 dark:placeholder-stone-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        [% locales.forEach(function (locale) { %]
+        <option value="[%= locale %]">[%= locale %]</option>
+        [% }); %]
+      </select>
+    </div>
+  </div>
+</form>
